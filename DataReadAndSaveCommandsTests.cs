@@ -7,12 +7,12 @@ namespace DataLibrary.Tests;
 public class DataReadAndSaveCommandsTests
 {
     private readonly Mock<IDataAccessor> _mockDataAccessor;
-    private readonly DataReadAndSaveCommands _dataReadAndSaveCommands;
+    private readonly DataReadAndSaveCommands _component;
 
     public DataReadAndSaveCommandsTests()
     {
         _mockDataAccessor = new Mock<IDataAccessor>();
-        _dataReadAndSaveCommands = new DataReadAndSaveCommands(_mockDataAccessor.Object);
+        _component = new DataReadAndSaveCommands(_mockDataAccessor.Object);
     }
 
     [Fact]
@@ -26,7 +26,7 @@ public class DataReadAndSaveCommandsTests
                          .ReturnsAsync(expected);
 
         // Act
-        var result = await _dataReadAndSaveCommands.ReadDataFromDBAsync<object, object>(sql, parameters);
+        var result = await _component.ReadDataFromDBAsync<object, object>(sql, parameters);
 
         // Assert
         Assert.Equal(expected, result);
@@ -44,7 +44,7 @@ public class DataReadAndSaveCommandsTests
                          .ThrowsAsync(new Exception("Database error"));
 
         // Act & Assert
-        await Assert.ThrowsAsync<Exception>(() => _dataReadAndSaveCommands.ReadDataFromDBAsync<object, object>(sql, parameters));
+        await Assert.ThrowsAsync<Exception>(() => _component.ReadDataFromDBAsync<object, object>(sql, parameters));
         _mockDataAccessor.Verify(db => db.Open(), Times.Once);
         _mockDataAccessor.Verify(db => db.Close(), Times.Once);
     }
@@ -60,7 +60,7 @@ public class DataReadAndSaveCommandsTests
                          .ReturnsAsync(expected);
 
         // Act
-        var result = await _dataReadAndSaveCommands.SaveDataToDBAsync(sql, parameters);
+        var result = await _component.SaveDataToDBAsync(sql, parameters);
 
         // Assert
         Assert.Equal(expected, result);
@@ -78,7 +78,7 @@ public class DataReadAndSaveCommandsTests
                          .ThrowsAsync(new Exception("Database error"));
 
         // Act & Assert
-        await Assert.ThrowsAsync<Exception>(() => _dataReadAndSaveCommands.SaveDataToDBAsync(sql, parameters));
+        await Assert.ThrowsAsync<Exception>(() => _component.SaveDataToDBAsync(sql, parameters));
         _mockDataAccessor.Verify(db => db.Open(), Times.Once);
         _mockDataAccessor.Verify(db => db.Close(), Times.Once);
     }
