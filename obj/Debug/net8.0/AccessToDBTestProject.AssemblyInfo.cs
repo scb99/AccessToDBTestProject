@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AccessToDBTestProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+181bdb821e6b9fcc28eb16b92b4b2d06dcec03c9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17c796e4f181045f48fbb7335af1634d769329e9")]
 [assembly: System.Reflection.AssemblyProductAttribute("AccessToDBTestProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AccessToDBTestProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
